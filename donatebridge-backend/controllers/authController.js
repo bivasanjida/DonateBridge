@@ -2,10 +2,20 @@ import jwt from "jsonwebtoken";
 import User from "../models/user.js";
 
 const SELF_REGISTER_ROLES = ["Donor", "NGO"];
+const COOKIE_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // keep in sync with JWT_EXPIRES_IN default ("7d")
 
 const signToken = (user) => {
   return jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  });
+};
+
+const setTokenCookie = (res, token) => {
+  res.cookie("token", token, {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: process.env.NODE_ENV === "production",
+    maxAge: COOKIE_MAX_AGE_MS,
   });
 };
 
@@ -52,7 +62,8 @@ export const register = async (req, res) => {
     });
 
     const token = signToken(newUser);
-    return res.status(201).json({ token, user: toSafeUser(newUser) });
+    setTokenCookie(res, token);
+    return res.status(201).json({ user: toSafeUser(newUser) });
   } catch (err) {
     console.error(`Error registering user: ${err}`);
     return res.status(500).json({ error: "Registration failed" });
@@ -74,11 +85,17 @@ export const login = async (req, res) => {
     }
 
     const token = signToken(user);
-    return res.status(200).json({ token, user: toSafeUser(user) });
+    setTokenCookie(res, token);
+    return res.status(200).json({ user: toSafeUser(user) });
   } catch (err) {
     console.error(`Error logging in user: ${err}`);
     return res.status(500).json({ error: "Login failed" });
   }
+};
+
+export const logout = (req, res) => {
+  res.clearCookie("token");
+  return res.status(200).json({ message: "Logged out" });
 };
 
 export const me = async (req, res) => {

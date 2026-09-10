@@ -1,12 +1,10 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
 
-export const apiFetch = async (path, { method = "GET", body, token } = {}) => {
-  const headers = { "Content-Type": "application/json" };
-  if (token) headers.Authorization = `Bearer ${token}`;
-
+export const apiFetch = async (path, { method = "GET", body } = {}) => {
   const res = await fetch(`${API_BASE_URL}${path}`, {
     method,
-    headers,
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
     body: body ? JSON.stringify(body) : undefined,
   });
 
@@ -25,7 +23,9 @@ export const registerUser = (data) =>
 export const loginUser = (credentials) =>
   apiFetch("/auth/login", { method: "POST", body: credentials });
 
-export const fetchMe = (token) => apiFetch("/auth/me", { token });
+export const logoutUser = () => apiFetch("/auth/logout", { method: "POST" });
 
-export const updateProfile = (data, token) =>
-  apiFetch("/auth/me", { method: "PATCH", body: data, token });
+export const fetchMe = () => apiFetch("/auth/me");
+
+export const updateProfile = (data) =>
+  apiFetch("/auth/me", { method: "PATCH", body: data });

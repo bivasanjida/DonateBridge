@@ -33,9 +33,9 @@ const NavBar = () => {
     setIsMenuOpen(false);
   }, [location.pathname]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     setIsMenuOpen(false);
-    logout();
+    await logout();
     navigate("/");
   };
 
