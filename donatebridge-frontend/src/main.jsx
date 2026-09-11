@@ -11,6 +11,7 @@ import BrowseItems from "./pages/BrowseItems.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
+import NgoDashboard from "./pages/NgoDashboard.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -35,6 +36,14 @@ createRoot(document.getElementById("root")).render(
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="ngo-dashboard"
+              element={
+                <ProtectedRoute requiredRole="NGO">
+                  <NgoDashboard />
                 </ProtectedRoute>
               }
             />
