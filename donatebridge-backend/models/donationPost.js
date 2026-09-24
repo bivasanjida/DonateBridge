@@ -19,16 +19,15 @@ const donationPostSchema = new Schema(
       required: true,
       trim: true,
     },
-    donorName: {
-      type: String,
+    donor: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
-      trim: true,
     },
-    donorEmail: {
+    imageUrl: {
       type: String,
-      required: true,
-      trim: true,
-      lowercase: true,
+      required: false,
+      default: "",
     },
     quantity: {
       type: Number,
@@ -48,8 +47,8 @@ const donationPostSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ["Available", "Reserved", "Collected"],
-      default: "Available",
+      enum: ["Listed", "Requested", "Scheduled", "Collected"],
+      default: "Listed",
     },
   },
   { timestamps: true },

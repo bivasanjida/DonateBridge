@@ -9,6 +9,10 @@ const guestPages = [
 
 const NavBar = () => {
   const ngoPages = [{ link: "/ngo-dashboard", text: "NGO Dashboard" }];
+  const donorPages = [
+    { link: "/create-item", text: "List an Item" },
+    { link: "/my-items", text: "My Items" },
+  ];
   const location = useLocation();
   const navigate = useNavigate();
   const { user, status, logout } = useAuth();
@@ -38,6 +42,7 @@ const NavBar = () => {
   const authPages = [
     { link: "/", text: "Home" },
     { link: "/browse", text: "Browse Items" },
+    ...(user && user.role === "Donor" ? donorPages : []),
     ...(user && user.role === "NGO" ? ngoPages : []),
   ];
 

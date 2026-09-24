@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { fetchDonationPosts, seedDonationPosts } from "../api/client";
 
 const statusColors = {
-  Available: "status-pill available",
-  Reserved: "status-pill reserved",
+  Listed: "status-pill listed",
+  Requested: "status-pill requested",
+  Scheduled: "status-pill scheduled",
   Collected: "status-pill collected",
 };
 
@@ -47,9 +48,7 @@ const NgoDashboard = () => {
           <p className="eyebrow">NGO Workspace</p>
           <h1>Donation Requests Dashboard</h1>
         </div>
-        <button className="btn" onClick={handleSeed}>
-          Load sample posts
-        </button>
+        <button className="btn" onClick={handleSeed}>Refresh sample data</button>
       </div>
 
       {seedMessage && <p className="form-success">{seedMessage}</p>}
@@ -88,8 +87,8 @@ const NgoDashboard = () => {
                   <td>{post.category}</td>
                   <td>
                     <div className="donor-meta">
-                      <strong>{post.donorName}</strong>
-                      <span>{post.donorEmail}</span>
+                      <strong>{post.donor?.name || "Unknown donor"}</strong>
+                      <span>{post.donor?.email || ""}</span>
                     </div>
                   </td>
                   <td>{post.quantity}</td>

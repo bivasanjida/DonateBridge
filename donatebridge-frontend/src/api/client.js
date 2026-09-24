@@ -31,5 +31,19 @@ export const fetchDonationPosts = () => apiFetch("/donation-posts");
 
 export const seedDonationPosts = () => apiFetch("/donation-posts/seed");
 
+export const createDonationPost = (data) =>
+  apiFetch("/donation-posts", { method: "POST", body: data });
+
+export const fetchMyDonationPosts = () => apiFetch("/donation-posts/mine");
+
+export const fetchDonationPost = (id) => apiFetch(`/donation-posts/${id}`);
+
+export const updateDonationPost = (id, data) =>
+  apiFetch(`/donation-posts/${id}`, { method: "PATCH", body: data });
+
+export const deleteDonationPost = (id) =>
+  apiFetch(`/donation-posts/${id}`, { method: "DELETE" });
+
+
 export const updateProfile = (data) =>
   apiFetch("/auth/me", { method: "PATCH", body: data });

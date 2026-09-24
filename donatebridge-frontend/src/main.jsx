@@ -12,6 +12,9 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
 import NgoDashboard from "./pages/NgoDashboard.jsx";
+import CreateItem from "./pages/CreateItem.jsx";
+import EditItem from "./pages/EditItem.jsx";
+import MyItems from "./pages/MyItems.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -21,14 +24,7 @@ createRoot(document.getElementById("root")).render(
         <div style={{ marginTop: "70px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="browse"
-              element={
-                <ProtectedRoute>
-                  <BrowseItems />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="browse" element={<BrowseItems />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route
@@ -47,6 +43,9 @@ createRoot(document.getElementById("root")).render(
                 </ProtectedRoute>
               }
             />
+            <Route path="create-item" element={<ProtectedRoute requiredRole="Donor"><CreateItem /></ProtectedRoute>} />
+            <Route path="edit-item/:id" element={<ProtectedRoute requiredRole="Donor"><EditItem /></ProtectedRoute>} />
+            <Route path="my-items" element={<ProtectedRoute requiredRole="Donor"><MyItems /></ProtectedRoute>} />
           </Routes>
         </div>
       </AuthProvider>

@@ -1,4 +1,23 @@
-# React + Vite
+# DonateBridge Frontend
+
+## Setup
+
+```bash
+npm install
+npm run dev
+```
+
+Set `VITE_API_BASE_URL` when the API is not running at `http://localhost:4000/api`.
+
+## Routes
+
+`/` landing page, `/browse` public item browsing, `/login`, `/register`, `/profile`, `/create-item`, `/edit-item/:id`, `/my-items`, and `/ngo-dashboard`.
+
+The donor pages require the Donor role. Profile and NGO dashboard require authentication, while browse and landing are public.
+
+## Components
+
+`NavBar` provides navigation and profile actions, `ProtectedRoute` handles access control, and `Button` provides shared form actions.
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
