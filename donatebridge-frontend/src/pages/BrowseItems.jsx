@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 import { fetchDonationPosts } from "../api/client";
 
 const categories = [
@@ -63,7 +64,11 @@ const BrowseItems = () => {
             <div className="item-card" key={item._id}>
               {item.imageUrl && <img className="item-image" src={item.imageUrl} alt={item.title} />}
               <span className="item-badge">{item.category}</span>
-              <h3>{item.title}</h3>
+              <h3>
+                <Link to={`/items/${item._id}`} className="item-link-title">
+                  {item.title}
+                </Link>
+              </h3>
               <p className="item-condition">Condition: {item.itemCondition}</p>
               <p>{item.description}</p>
               <p className="item-location">Pickup: {item.pickupLocation}</p>

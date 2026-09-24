@@ -12,6 +12,8 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Profile from "./pages/Profile.jsx";
 import NgoDashboard from "./pages/NgoDashboard.jsx";
+import MyRequests from "./pages/MyRequests.jsx";
+import ItemDetail from "./pages/ItemDetail.jsx";
 import CreateItem from "./pages/CreateItem.jsx";
 import EditItem from "./pages/EditItem.jsx";
 import MyItems from "./pages/MyItems.jsx";
@@ -25,6 +27,7 @@ createRoot(document.getElementById("root")).render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="browse" element={<BrowseItems />} />
+            <Route path="items/:id" element={<ItemDetail />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route
@@ -40,6 +43,14 @@ createRoot(document.getElementById("root")).render(
               element={
                 <ProtectedRoute requiredRole="NGO">
                   <NgoDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="my-requests"
+              element={
+                <ProtectedRoute requiredRole="NGO">
+                  <MyRequests />
                 </ProtectedRoute>
               }
             />

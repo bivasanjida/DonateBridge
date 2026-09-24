@@ -38,12 +38,23 @@ export const fetchMyDonationPosts = () => apiFetch("/donation-posts/mine");
 
 export const fetchDonationPost = (id) => apiFetch(`/donation-posts/${id}`);
 
+export const fetchDonationPostById = (id) => apiFetch(`/donation-posts/${id}`);
+
 export const updateDonationPost = (id, data) =>
   apiFetch(`/donation-posts/${id}`, { method: "PATCH", body: data });
 
 export const deleteDonationPost = (id) =>
   apiFetch(`/donation-posts/${id}`, { method: "DELETE" });
 
+export const createPickupRequest = (data) =>
+  apiFetch("/pickup-requests", { method: "POST", body: data });
+
+export const fetchMyPickupRequests = () => apiFetch("/pickup-requests/mine");
+
+export const cancelPickupRequest = (id) =>
+  apiFetch(`/pickup-requests/${id}`, { method: "DELETE" });
+
+export const fetchAllPickupRequests = () => apiFetch("/pickup-requests/all");
 
 export const updateProfile = (data) =>
   apiFetch("/auth/me", { method: "PATCH", body: data });

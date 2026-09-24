@@ -8,7 +8,10 @@ const guestPages = [
 ];
 
 const NavBar = () => {
-  const ngoPages = [{ link: "/ngo-dashboard", text: "NGO Dashboard" }];
+  const ngoPages = [
+    { link: "/ngo-dashboard", text: "NGO Dashboard" },
+    { link: "/my-requests", text: "My Requests" },
+  ];
   const donorPages = [
     { link: "/create-item", text: "List an Item" },
     { link: "/my-items", text: "My Items" },
