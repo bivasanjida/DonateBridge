@@ -13,8 +13,6 @@ const signToken = (user) => {
 const setTokenCookie = (res, token) => {
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
     maxAge: COOKIE_MAX_AGE_MS,
   });
 };
