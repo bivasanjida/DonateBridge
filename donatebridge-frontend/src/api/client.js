@@ -27,5 +27,9 @@ export const logoutUser = () => apiFetch("/auth/logout", { method: "POST" });
 
 export const fetchMe = () => apiFetch("/auth/me");
 
+export const fetchDonationPosts = () => apiFetch("/donation-posts");
+
+export const seedDonationPosts = () => apiFetch("/donation-posts/seed");
+
 export const updateProfile = (data) =>
   apiFetch("/auth/me", { method: "PATCH", body: data });

@@ -7,12 +7,8 @@ const guestPages = [
   { link: "/register", text: "Register" },
 ];
 
-const authPages = [
-  { link: "/", text: "Home" },
-  { link: "/browse", text: "Browse Items" },
-];
-
 const NavBar = () => {
+  const ngoPages = [{ link: "/ngo-dashboard", text: "NGO Dashboard" }];
   const location = useLocation();
   const navigate = useNavigate();
   const { user, status, logout } = useAuth();
@@ -39,8 +35,18 @@ const NavBar = () => {
     navigate("/");
   };
 
+  const authPages = [
+    { link: "/", text: "Home" },
+    { link: "/browse", text: "Browse Items" },
+    ...(user && user.role === "NGO" ? ngoPages : []),
+  ];
+
   const pages =
-    status === "authenticated" ? authPages : status === "unauthenticated" ? guestPages : [];
+    status === "authenticated"
+      ? authPages
+      : status === "unauthenticated"
+        ? guestPages
+        : [];
 
   return (
     <div className="nav-main-div">

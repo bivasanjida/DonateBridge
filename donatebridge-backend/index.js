@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import "dotenv/config";
 import authRouter from "./routes/authRoutes.js";
+import donationPostRouter from "./routes/donationPostRoutes.js";
 import { log } from "./middlewares/logger.js";
 
 const app = express();
@@ -37,6 +38,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/donation-posts", donationPostRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
