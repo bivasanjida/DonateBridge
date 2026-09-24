@@ -150,6 +150,271 @@
     cursor: pointer;
 }
 
+/* ---------- Admin dashboard ---------- */
+.admin-dashboard {
+    padding: 32px 24px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.admin-dashboard h1 {
+    font-size: 32px;
+    color: #1f2937;
+    margin-bottom: 8px;
+}
+
+.admin-subtitle {
+    color: #6b7280;
+    margin-bottom: 28px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.stat-card .stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2e7d63;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.stat-card .stat-label {
+    font-size: 14px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dashboard-section {
+    margin-top: 12px;
+}
+
+.section-header {
+    margin-bottom: 12px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #1f2937;
+}
+
+.dashboard-table-wrap {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #eef1f4;
+    vertical-align: top;
+}
+
+.dashboard-table th {
+    background: #f9fafb;
+    color: #374151;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.dashboard-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.table-subtext {
+    color: #6b7280;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.table-link {
+    color: #2e7d63;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.empty-state,
+.empty-table {
+    color: #6b7280;
+    padding: 20px;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 20px 0 18px;
+}
+
+.filter-tab {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #374151;
+}
+
+.filter-tab.active {
+    background: #2e7d63;
+    border-color: #2e7d63;
+    color: #fff;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.scheduled {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.status-badge.rejected {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-badge.collected {
+    background: #e0e7ff;
+    color: #4338ca;
+}
+
+.action-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-small {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.btn-danger {
+    background: #b91c1c;
+}
+
+.btn-danger:hover {
+    background: #991b1b;
+}
+
+.reject-inline {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.reject-inline input,
+.schedule-box input,
+.schedule-box textarea,
+.history-toolbar input,
+.history-toolbar select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #111827;
+    background: #fff;
+}
+
+.schedule-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.schedule-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.history-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+}
+
+.history-toolbar input {
+    max-width: 340px;
+}
+
+.history-count {
+    color: #374151;
+    font-weight: 600;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.role-badge.donor {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.role-badge.ngo {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.role-badge.admin {
+    background: #f3e8ff;
+    color: #6b21a8;
+}
+
 /* ---------- Landing page ---------- */
 .hero {
     text-align: center;
@@ -190,11 +455,27 @@
     padding: 20px;
     width: 250px;
     text-align: center;
+    color: inherit;
+    background: #fff;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 .feature-card h3 {
     color: #2e7d63;
     margin-bottom: 10px;
+}
+
+.feature-card-disabled {
+    cursor: default;
+    opacity: 0.9;
 }
 
 /* ---------- Browse items page ---------- */

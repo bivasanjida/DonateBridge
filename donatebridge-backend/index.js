@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import "dotenv/config";
 import authRouter from "./routes/authRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
+import pickupRequestRouter from "./routes/pickupRequestRoutes.js";
 import { log } from "./middlewares/logger.js";
 
 const app = express();
@@ -37,6 +39,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/admin", adminRouter);
+app.use("/api/pickup-requests", pickupRequestRouter);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

@@ -12,6 +12,13 @@ const authPages = [
   { link: "/browse", text: "Browse Items" },
 ];
 
+const adminPages = [
+  { link: "/admin", text: "Dashboard" },
+  { link: "/admin/verification", text: "Verification" },
+  { link: "/admin/history", text: "History" },
+  { link: "/admin/users", text: "Users" },
+];
+
 const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -40,7 +47,13 @@ const NavBar = () => {
   };
 
   const pages =
-    status === "authenticated" ? authPages : status === "unauthenticated" ? guestPages : [];
+    status === "authenticated"
+      ? user?.role === "Admin"
+        ? adminPages
+        : authPages
+      : status === "unauthenticated"
+        ? guestPages
+        : [];
 
   return (
     <div className="nav-main-div">

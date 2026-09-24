@@ -38,7 +38,7 @@ const Register = () => {
     setIsSubmitting(true);
 
     try {
-      await register({
+      const user = await register({
         name,
         email,
         phone,
@@ -46,7 +46,11 @@ const Register = () => {
         role,
         organizationName: role === "NGO" ? organizationName : undefined,
       });
-      navigate("/");
+      if (user.role === "Admin") {
+        navigate("/admin");
+      } else {
+        navigate("/browse");
+      }
     } catch (err) {
       setError(err.message);
     } finally {
