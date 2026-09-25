@@ -52,15 +52,6 @@ const donationPostSchema = new Schema(
       required: true,
       trim: true,
     },
-    imageUrl: {
-      type: String,
-      default: "",
-    },
-    donor: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
     status: {
       type: String,
       enum: ["Listed", "Requested", "Approved", "Scheduled", "Collected"],

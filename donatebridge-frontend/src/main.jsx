@@ -47,6 +47,10 @@ createRoot(document.getElementById("root")).render(
               element={
                 <ProtectedRoute requiredRole="NGO">
                   <NgoDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="admin"
               element={
                 <ProtectedRoute requiredRole="Admin">
@@ -65,6 +69,7 @@ createRoot(document.getElementById("root")).render(
             <Route path="create-item" element={<ProtectedRoute requiredRole="Donor"><CreateItem /></ProtectedRoute>} />
             <Route path="edit-item/:id" element={<ProtectedRoute requiredRole="Donor"><EditItem /></ProtectedRoute>} />
             <Route path="my-items" element={<ProtectedRoute requiredRole="Donor"><MyItems /></ProtectedRoute>} />
+            <Route
               path="admin/verification"
               element={
                 <ProtectedRoute requiredRole="Admin">

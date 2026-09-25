@@ -1,4 +1,6 @@
 import Landing from "./Landing";
+import { useAuth } from "../context/AuthContext";
+import { Navigate } from "react-router";
 
 const Home = () => {
   const { user, status } = useAuth();
