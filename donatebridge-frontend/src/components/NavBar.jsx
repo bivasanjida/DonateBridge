@@ -56,7 +56,7 @@ const NavBar = () => {
 
   const authPages = [
     { link: "/", text: "Home" },
-    { link: "/browse", text: "Browse Items" },
+    ...(!user || user.role !== "Donor" ? [{ link: "/browse", text: "Browse Items" }] : []),
     ...(user && user.role === "Donor" ? donorPages : []),
     ...(user && user.role === "NGO" ? ngoPages : []),
   ];

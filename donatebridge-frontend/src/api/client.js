@@ -71,6 +71,7 @@ export const updateProfile = (data) =>
 
 export const fetchAdminStats = () => apiFetch("/admin/stats");
 
+export const fetchAdminPickupRequests = () => apiFetch("/admin/pickup-requests/all");
 
 export const approvePickupRequest = (id, data) =>
   apiFetch(`/admin/pickup-requests/${id}/approve`, { method: "PATCH", body: data });

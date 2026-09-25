@@ -6,7 +6,7 @@
  * for each item request in the donation workflow.
  */
 import { useEffect, useMemo, useState } from "react";
-import { fetchAllPickupRequests, approvePickupRequest, rejectPickupRequest, schedulePickup, confirmCollection } from "../api/client";
+import { fetchAdminPickupRequests, approvePickupRequest, rejectPickupRequest, schedulePickup, confirmCollection } from "../api/client";
 
 const FILTERS = ["All", "Pending", "Approved", "Scheduled", "Rejected", "Collected"];
 
@@ -38,7 +38,7 @@ const AdminVerification = () => {
 
   const loadRequests = async () => {
     try {
-      const data = await fetchAllPickupRequests();
+      const data = await fetchAdminPickupRequests();
       setRequests(data.data || []);
     } catch (err) {
       setError(err.message);
@@ -81,10 +81,12 @@ const AdminVerification = () => {
     try {
       setError("");
       const form = scheduleForm[id] || {};
+      const requestToSchedule = requests.find((r) => r._id === id);
+      
       await schedulePickup(id, {
         scheduledDate: form.date,
         scheduledTime: form.time,
-        collectionAddress: form.address,
+        collectionAddress: form.address || requestToSchedule?.item?.pickupLocation || "",
         adminNotes: form.notes,
       });
       setActiveSchedulingId(null);

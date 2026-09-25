@@ -89,6 +89,8 @@ export const approvePickupRequest = async (req, res) => {
 
     await request.save();
 
+    await DonationPost.findByIdAndUpdate(request.item, { status: "Approved" });
+
     return res.status(200).json({
       message: "Pickup request approved.",
       pickupRequest: request,

@@ -15,9 +15,16 @@ const Landing = () => {
           and collected — no phone calls, no confusion.
         </p>
         <div className="hero-actions">
-          <Link to="/browse" className="btn-outline">
-            Browse Items
-          </Link>
+          {(!user || user.role !== "Donor") && (
+            <Link to="/browse" className="btn-outline">
+              Browse Items
+            </Link>
+          )}
+          {user?.role === "Donor" && (
+            <Link to="/create-item" className="btn-outline">
+              List an Item
+            </Link>
+          )}
           <Link to={isAuthenticated ? "/profile" : "/register"} className="btn">
             {isAuthenticated ? "Go to Profile" : "Get Started"}
           </Link>
@@ -25,7 +32,7 @@ const Landing = () => {
       </section>
 
       <section className="features">
-        <Link to="/browse" className="feature-card">
+        <Link to={user?.role === "Donor" ? "/create-item" : "/register"} className="feature-card">
           <h3>For Donors</h3>
           <p>
             List items you no longer need with a photo, category, and
