@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import "dotenv/config";
 import authRouter from "./routes/authRoutes.js";
 import donationPostRouter from "./routes/donationPostRoutes.js";
+import adminRouter from "./routes/adminRoutes.js";
 import pickupRequestRouter from "./routes/pickupRequestRoutes.js";
 import { log } from "./middlewares/logger.js";
 
@@ -40,6 +41,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/donation-posts", donationPostRouter);
+app.use("/api/admin", adminRouter);
 app.use("/api/pickup-requests", pickupRequestRouter);
 
 app.listen(PORT, () => {

@@ -17,6 +17,10 @@ import ItemDetail from "./pages/ItemDetail.jsx";
 import CreateItem from "./pages/CreateItem.jsx";
 import EditItem from "./pages/EditItem.jsx";
 import MyItems from "./pages/MyItems.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import AdminVerification from "./pages/AdminVerification.jsx";
+import DonationHistory from "./pages/DonationHistory.jsx";
+import AdminUsers from "./pages/AdminUsers.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -43,6 +47,10 @@ createRoot(document.getElementById("root")).render(
               element={
                 <ProtectedRoute requiredRole="NGO">
                   <NgoDashboard />
+              path="admin"
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <AdminDashboard />
                 </ProtectedRoute>
               }
             />
@@ -57,6 +65,29 @@ createRoot(document.getElementById("root")).render(
             <Route path="create-item" element={<ProtectedRoute requiredRole="Donor"><CreateItem /></ProtectedRoute>} />
             <Route path="edit-item/:id" element={<ProtectedRoute requiredRole="Donor"><EditItem /></ProtectedRoute>} />
             <Route path="my-items" element={<ProtectedRoute requiredRole="Donor"><MyItems /></ProtectedRoute>} />
+              path="admin/verification"
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <AdminVerification />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="admin/history"
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <DonationHistory />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="admin/users"
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <AdminUsers />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
       </AuthProvider>

@@ -4,6 +4,11 @@
  *
  * The model stores the requested item, the NGO making the request,
  * and the current status plus any admin scheduling details.
+ * PickupRequest - Tracks donor-item pickup requests initiated by NGOs.
+ * Part of DonateBridge - Community Item Donation & Pickup Platform
+ *
+ * Each request links an item and NGO, tracks review status, and stores the
+ * agreed schedule information needed by the admin verification flow.
  */
 import mongoose from "mongoose";
 

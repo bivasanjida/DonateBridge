@@ -1,20 +1,30 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
 
 export const apiFetch = async (path, { method = "GET", body } = {}) => {
-  const res = await fetch(`${API_BASE_URL}${path}`, {
-    method,
-    credentials: "include",
-    headers: { "Content-Type": "application/json" },
-    body: body ? JSON.stringify(body) : undefined,
-  });
+  try {
+    const res = await fetch(`${API_BASE_URL}${path}`, {
+      method,
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: body ? JSON.stringify(body) : undefined,
+    });
 
-  const data = await res.json().catch(() => ({}));
+    const data = await res.json().catch(() => ({}));
 
-  if (!res.ok) {
-    throw new Error(data.error || "Something went wrong. Please try again.");
+    if (!res.ok) {
+      throw new Error(data.error || "Something went wrong. Please try again.");
+    }
+
+    return data;
+  } catch (error) {
+    if (error instanceof TypeError && error.message === "Failed to fetch") {
+      throw new Error(
+        "The backend server is not running. Start it with: cd D:\\DonateBridge\\donatebridge-backend && npm run dev",
+      );
+    }
+
+    throw error;
   }
-
-  return data;
 };
 
 export const registerUser = (data) =>
@@ -58,3 +68,23 @@ export const fetchAllPickupRequests = () => apiFetch("/pickup-requests/all");
 
 export const updateProfile = (data) =>
   apiFetch("/auth/me", { method: "PATCH", body: data });
+
+export const fetchAdminStats = () => apiFetch("/admin/stats");
+
+export const fetchAllPickupRequests = () => apiFetch("/pickup-requests/all");
+
+export const approvePickupRequest = (id, data) =>
+  apiFetch(`/admin/pickup-requests/${id}/approve`, { method: "PATCH", body: data });
+
+export const rejectPickupRequest = (id, data) =>
+  apiFetch(`/admin/pickup-requests/${id}/reject`, { method: "PATCH", body: data });
+
+export const schedulePickup = (id, data) =>
+  apiFetch(`/admin/pickup-requests/${id}/schedule`, { method: "PATCH", body: data });
+
+export const confirmCollection = (id) =>
+  apiFetch(`/admin/pickup-requests/${id}/collect`, { method: "PATCH" });
+
+export const fetchDonationHistory = () => apiFetch("/admin/history");
+
+export const fetchAllUsers = () => apiFetch("/admin/users");

@@ -7,6 +7,18 @@ const guestPages = [
   { link: "/register", text: "Register" },
 ];
 
+const authPages = [
+  { link: "/", text: "Home" },
+  { link: "/browse", text: "Browse Items" },
+];
+
+const adminPages = [
+  { link: "/admin", text: "Dashboard" },
+  { link: "/admin/verification", text: "Verification" },
+  { link: "/admin/history", text: "History" },
+  { link: "/admin/users", text: "Users" },
+];
+
 const NavBar = () => {
   const ngoPages = [
     { link: "/ngo-dashboard", text: "NGO Dashboard" },
@@ -51,7 +63,9 @@ const NavBar = () => {
 
   const pages =
     status === "authenticated"
-      ? authPages
+      ? user?.role === "Admin"
+        ? adminPages
+        : authPages
       : status === "unauthenticated"
         ? guestPages
         : [];

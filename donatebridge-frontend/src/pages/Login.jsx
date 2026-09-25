@@ -23,8 +23,12 @@ const Login = () => {
     setIsSubmitting(true);
 
     try {
-      await login({ email, password });
-      navigate("/");
+      const user = await login({ email, password });
+      if (user.role === "Admin") {
+        navigate("/admin");
+      } else {
+        navigate("/browse");
+      }
     } catch (err) {
       setError(err.message);
     } finally {
